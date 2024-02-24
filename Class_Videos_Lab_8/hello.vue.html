@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+
+    <!--    link from video doesn't work: <script src="https://unpkg.com/vue@next"></script>  -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <!--    vue will manage all the HTML here. -->
+
+    <h1>Hello Vue!</h1>
+
+   <p> {{ messageWithExclamationPoints }} </p>
+
+    <button v-on:click="addExclamationPoints">Add Exclamation Points</button>
+    <button v-on:click="clearExclamationPoints">Clear</button>
+
+</div>
+
+<script>
+
+    //set up vue app
+
+    const { createApp, ref, computed} = Vue  //import these pieces of the Vue library
+
+     createApp({  //creates a Vue app
+         setup() {
+             //define things our Vue app needs here.
+
+             const message = ref('Hi')
+             const numberOfExclamationPoints = ref(0)
+
+             function addExclamationPoints(){
+                 if (numberOfExclamationPoints.value <10) {
+                     //message.value = message.value + '!'  //this isn't needed when 'computed' is added to consts of Vue library
+                     numberOfExclamationPoints.value++
+                 } else {
+                     alert('No more exclamation points!')
+                 }
+
+             }
+
+             function clearExclamationPoints () {
+                numberOfExclamationPoints.value = 0
+                 //message.value = 'Hi!'
+             }
+
+             const messageWithExclamationPoints = computed ( function() {
+                 let computedMessage = message.value
+                 // add ! based on numberOfExclamationPoints
+                 for (let x = 0; x < numberOfExclamationPoints.value; x++) {
+                     computedMessage = computedMessage + '!'
+                 }
+                 return computedMessage
+             })  //name of computed property
+
+             return {
+                 message,
+                 numberOfExclamationPoints,
+                 addExclamationPoints,
+                 clearExclamationPoints,
+                 messageWithExclamationPoints
+
+
+                 //things we've created
+
+             }
+         }
+     }).mount('#app')  // connects Vue app with HTML
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue To Do List</title>
+
+    <!--    link from video doesn't work: <script src="https://unpkg.com/vue@next"></script>  -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <h1>Task List</h1>
+    <h2>Enter new task</h2>
+    <label>Please enter your to-do task: </label>
+    <input v-model="newTask">
+    <br>
+    <button v-on:click="addTask">Add Task</button>
+
+    <h2>Task List</h2>
+    <h2>Your Task List</h2>
+    <ul>
+        <li v-for="task in taskList">   <!--  v-for means take 'li'  and duplicate it as many times as there are tasks in the taskList array-->
+            {{  task  }}
+        </li>
+    </ul>
+</div>
+
+
+<script>
+    const { createApp, ref} = Vue
+
+    createApp({
+        setup() {
+            const taskList = ref([ 'water plants', 'pay cellphone bill', 'wash floors' ])
+            const newTask = ref('')
+            function addTask() {
+                //add the newTAsk to the taskList
+                if (newTask.value) {  //if there is something in the input box
+                    taskList.value.push(newTask.value)
+                    newTask.value =''
+                }
+
+            }
+
+            return{
+                taskList,
+                newTask,
+                addTask
+
+
+            }
+        }
+    }).mount('#app')
+</script>
+
+</body>
+</html>

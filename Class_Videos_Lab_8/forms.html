@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Forms</title>
+
+    <!--    link from video doesn't work: <script src="https://unpkg.com/vue@next"></script>  -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+
+    <div id="app">
+     <h1>Enter your name</h1>
+        <label>Please enter your name: </label>
+        <input v-model="name">
+        <!-- option 1:
+        <p v-if="name">Thanks, your name is {{ name }}</p> --> <!-- use v-if to only render paragraph if there is a name entered -->
+
+        <!-- Option 2: You might find this clearer that the code is checking to see if the string is empty, has 0 characters. -->
+        <p v-if="name.length > 0">Thanks, your name is {{ name }}
+            <br>
+            <br>
+            <button v-on:click="clearName">Clear Name</button>    <!-- button in paragraph means it will only appear if there is a name -->
+        </p>
+        <p v-else>Awaiting user input</p>
+
+        <!-- Option 3: from sample code for showing clear button only if name is entered:
+         <div v-if="name">
+            <p>Your name is {{ name }}</p>
+            <button v-on:click="clearName">Clear Input</button>
+        </div>
+        <div v-else>
+            <p>Awaiting user input.</p>
+        </div>        -->
+
+
+
+</div>
+
+
+<script>
+    const { createApp, ref} = Vue
+
+    createApp({
+        setup() {
+
+            const name = ref('')   // empty string for now
+
+            function clearName() {
+                name.value = ''  //if name is changed, it affects the HTML
+
+            }
+            return{
+                name,
+                clearName,
+
+            }
+        }
+    }).mount('#app')
+</script>
+
+</body>
+</html>

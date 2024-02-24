@@ -1,0 +1,9 @@
+What does this Vue warning message mean? Can you safely ignore it? What causes it, and how do you fix it?  Write an answer in your own words.
+
+[Vue warn]: Property    vue@next:1254
+"total" was accessed during render but is not defined on instance.
+at <App>
+
+
+Melissa's Answer:
+
