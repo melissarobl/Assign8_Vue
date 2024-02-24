@@ -7,3 +7,13 @@ at <App>
 
 Melissa's Answer:
 
+This Vue warning means that you declared a variable in the template area (the div area with the "app id") but that variable is not:
+  - defined in the Vue area (the script where you put 'createApp')
+  - you have a typo when you tried to use it in the Vue area
+  - you didn't put the variable mentioned in the error in the 'return' part of the app (Vue area)
+
+
+You cannot ignore this error. The code is not complete and will not work without declaring the variable in the Vue area.
+
+To fix it, declare the variable in the createApp Vue area, correct the typo, or put the variable in the 'return' part of the createApp. In this example, you have
+to declare the 'total' property.
