@@ -37,7 +37,7 @@
 
              function addExclamationPoints(){
                  if (numberOfExclamationPoints.value <10) {
-                     //message.value = message.value + '!'  //this isn't needed when 'computed' is added to consts of Vue library
+                     //message.value = message.value + '!'  //this isn't needed when 'computed' is added to consists of Vue library
                      numberOfExclamationPoints.value++
                  } else {
                      alert('No more exclamation points!')
@@ -52,7 +52,7 @@
 
              const messageWithExclamationPoints = computed ( function() {
                  let computedMessage = message.value
-                 // add ! based on numberOfExclamationPoints
+                 // add ! based on numberOfExclamationPoints- this is a computed property
                  for (let x = 0; x < numberOfExclamationPoints.value; x++) {
                      computedMessage = computedMessage + '!'
                  }
